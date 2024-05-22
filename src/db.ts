@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 
-const mongoURI="mongodb://localhost:27017";
+dotenv.config();
+
+const mongoURI=process.env.MONGOURI!;
 //database connection
 export const connectDB=()=>{
     try{
