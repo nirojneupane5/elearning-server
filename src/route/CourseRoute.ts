@@ -1,11 +1,9 @@
-import express, { Request, Response } from "express";
-
+import express from "express";
+import { createCourse } from "../controller/CourseController";
 const router=express.Router();
 
 
-//Route 1 Get all course list
-router.get('/course',(req:Request,res:Response)=>{
-    res.json({msg:"Get all the book"})
-})
+//Route 1: Create a course
+router.post('/course',createCourse)
 
 export default router;
