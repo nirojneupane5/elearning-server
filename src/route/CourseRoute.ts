@@ -19,8 +19,6 @@ const storage=multer.diskStorage({
 
 const upload=multer({storage})
  
-
-
 //Route 1: Create a course
 /**
  * @swagger
