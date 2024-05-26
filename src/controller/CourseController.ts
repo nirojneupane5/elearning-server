@@ -10,9 +10,8 @@ export const createCourse=async(req:Request<{},{},CreateCourseDto>,res:Response,
     let course_image=filename;
     let courseName:string =course_name.charAt(0).toUpperCase()+ course_name.toLowerCase().slice(1)
     let checkCourseName=await Course.findOne({course_name:courseName});
-    console.log(checkCourseName)
     if(checkCourseName){
-        return res.status(400).json({error:"Course already exits"})
+        return res.status(409).json({error:"Course already exits"})
     }
     try{
         const course=await Course.create({course_name:courseName,price,course_image});
