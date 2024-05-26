@@ -5,12 +5,13 @@ import Course from "../models/CourseSchema";
 
 //Route 1: Create a course
 export const createCourse=async(req:Request<{},{},CreateCourseDto>,res:Response,next:NextFunction)=>{
-    const {course_name,price} =req.body;
+    let {course_name,price} =req.body;
     const { filename }=req.file!;
     let course_image=filename;
+    let courseName=course_name.charAt(0).toUpperCase()+ course_name.toLowerCase().slice(1)
     
     try{
-        const course=await Course.create({course_name,price,course_image});
+        const course=await Course.create({course_name:courseName,price,course_image});
         res.status(201).json(course);
     }catch(error){
         next(error)
