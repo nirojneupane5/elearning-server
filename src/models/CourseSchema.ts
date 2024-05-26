@@ -3,6 +3,7 @@ import mongoose, { Document, Model, Schema } from "mongoose"
 interface ICourse extends Document{
     course_name:string;
     price:number;
+    course_image:string;
 }
 
 const courseSchema:Schema<ICourse>=new Schema({
@@ -12,6 +13,10 @@ const courseSchema:Schema<ICourse>=new Schema({
     },
     price:{
         type:Number,
+        required:true
+    },
+    course_image:{
+        type:String,
         required:true
     }
 })
