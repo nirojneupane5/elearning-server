@@ -5,6 +5,8 @@ import cors from "cors";
 import CourseRoute from "./route/CourseRoute";
 import { errorHandler } from "./middleware/errorMiddleware";
 import path from "path";
+import swaggerUi from "swagger-ui-express"
+import swaggerSpec from "./swagger/swaggerConfig";
 
 // Load environment variables
 dotenv.config();
@@ -18,6 +20,9 @@ app.use(express.json());
 // Middleware to enable CORS
 app.use(cors());
 
+
+
+
 app.use('/src/CourseImage',express.static(path.join(__dirname,'CourseImage')));
 
 // Application routes
@@ -28,6 +33,9 @@ app.use(errorHandler);
 
 //Database Connection
 connectDB()
+
+// Serve the Swagger UI
+app.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerSpec));
 
 //Defining the port
 const port=process.env.PORT || 8080;
