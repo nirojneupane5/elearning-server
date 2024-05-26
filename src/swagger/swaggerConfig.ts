@@ -10,7 +10,7 @@ const option:swaggerJSDoc.Options={
             description:"Elearning platform API documentation"
         }
     },
-    apis:[path.join(__dirname,'../route/CourseRoute.ts')]
+    apis:[path.join(__dirname,'../route/*.ts')]
 }
 
 const swaggerSpec=swaggerJSDoc(option)
