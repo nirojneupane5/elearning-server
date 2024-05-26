@@ -35,6 +35,8 @@ const upload=multer({storage})
  *             properties:
  *               course_name:
  *                 type: string
+ *               course_desc:
+ *                 type: string
  *               price:
  *                 type: number
  *               image:
