@@ -8,7 +8,7 @@ export const createCourse=async(req:Request<{},{},CreateCourseDto>,res:Response,
     let {course_name,price} =req.body;
     const { filename }=req.file!;
     let course_image=filename;
-    let courseName=course_name.charAt(0).toUpperCase()+ course_name.toLowerCase().slice(1)
+    let courseName:string =course_name.charAt(0).toUpperCase()+ course_name.toLowerCase().slice(1)
     
     try{
         const course=await Course.create({course_name:courseName,price,course_image});
