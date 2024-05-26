@@ -1,5 +1,4 @@
 //Image validation
-
 import { NextFunction, Request, Response } from "express";
 import Joi from "joi";
 
@@ -15,8 +14,6 @@ export const validateImage=(req:Request, res:Response,next:NextFunction)=>{
     if(!file){
         return res.status(404).json({error:"Course image not found!!"})
     }
-
-    
 
     const {error}=imageSchema.validate(file);
     if(error){
