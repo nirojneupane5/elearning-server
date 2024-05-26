@@ -2,12 +2,17 @@ import mongoose, { Document, Model, Schema } from "mongoose"
 
 interface ICourse extends Document{
     course_name:string;
+    course_desc:string;
     price:number;
     course_image:string;
 }
 
 const courseSchema:Schema<ICourse>=new Schema({
     course_name:{
+        type:String,
+        required:true
+    },
+    course_desc:{
         type:String,
         required:true
     },
