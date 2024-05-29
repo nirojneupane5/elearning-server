@@ -19,3 +19,14 @@ export const createCourse=async(req:Request<{},{},CreateCourseDto>,res:Response,
         next(error)
     }
 }
+
+//ROute 2: Display all course
+export const displayCourse=async(req:Request,res:Response,next:NextFunction)=>{
+    try{
+        const course=await Course.find({});
+        res.status(200).json(course)
+    }catch(error){
+        next(error)
+    }
+
+}

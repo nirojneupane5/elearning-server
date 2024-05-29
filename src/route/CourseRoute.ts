@@ -1,6 +1,6 @@
 import express from "express";
 import multer from "multer"
-import { createCourse } from "../controller/CourseController";
+import { createCourse, displayCourse } from "../controller/CourseController";
 import { validate } from "../middleware/validate";
 import { createCourseSchema } from "../validators/CourseValidation";
 import { validateImage } from "../middleware/validateImage";
@@ -50,6 +50,9 @@ const upload=multer({storage})
  *       409:
  *         description: Course already exists
  */
-router.post('/course',upload.single('image'),validateImage,validate(createCourseSchema),createCourse)
+router.post('/course',upload.single('image'),validateImage,validate(createCourseSchema),createCourse);
+
+//Route 2: Get all Course
+router.get("/course",displayCourse);
 
 export default router;
