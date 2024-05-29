@@ -7,7 +7,7 @@ export const createCourseSchema=Joi.object({
     }),
     course_desc:Joi.string().required().messages({
         "string.base":"Please enter the valid course description",
-        "any.required":"Course is required"
+        "any.required":"Course description is required"
     }),
     price:Joi.number().greater(0).required().messages({
         "number.base":"Price must be number",
