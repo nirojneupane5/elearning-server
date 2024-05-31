@@ -30,3 +30,14 @@ export const displayCourse=async(req:Request,res:Response,next:NextFunction)=>{
     }
 
 }
+
+//Route 3: Display single course
+export const displaySingleCourse=async(req:Request,res:Response,next:NextFunction)=>{
+    const {id}=req.params
+    try{
+        const course=await Course.findById({_id:id})
+        return res.status(200).json(course)
+    }catch(error){
+        next(error)
+    }
+}

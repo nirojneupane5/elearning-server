@@ -1,6 +1,6 @@
 import express from "express";
 import multer from "multer"
-import { createCourse, displayCourse } from "../controller/CourseController";
+import { createCourse, displayCourse, displaySingleCourse } from "../controller/CourseController";
 import { validate } from "../middleware/validate";
 import { createCourseSchema } from "../validators/CourseValidation";
 import { validateImage } from "../middleware/validateImage";
@@ -54,5 +54,8 @@ router.post('/course',upload.single('image'),validateImage,validate(createCourse
 
 //Route 2: Get all Course
 router.get("/course",displayCourse);
+
+//Route 3: Get a single course
+router.get("/course/:id",displaySingleCourse)
 
 export default router;
