@@ -20,9 +20,6 @@ app.use(express.json());
 // Middleware to enable CORS
 app.use(cors());
 
-
-
-
 app.use('/src/CourseImage',express.static(path.join(__dirname,'CourseImage')));
 
 // Application routes
