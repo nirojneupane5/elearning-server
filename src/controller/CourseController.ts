@@ -41,3 +41,24 @@ export const displaySingleCourse=async(req:Request,res:Response,next:NextFunctio
         next(error)
     }
 }
+
+//Route 4: Search course 
+export const searchCourse=async(req:Request,res:Response,next:NextFunction)=>{
+    const query=req.query;
+    try{
+
+    const searchResult=await Course.find({
+        "$or":[
+            {course_name:{$regex:query.course_name,$options:"xi"}}
+        ]
+    })
+    if(searchResult.length===0){
+        return res.status(404).json({error:"No result found"})
+    }else{
+        res.status(200).json(searchResult);
+    }
+    
+    }catch(error){
+        next(error)
+    }
+}
