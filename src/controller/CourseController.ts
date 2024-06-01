@@ -52,11 +52,9 @@ export const searchCourse=async(req:Request,res:Response,next:NextFunction)=>{
             {course_name:{$regex:query.course_name,$options:"xi"}}
         ]
     })
-    if(searchResult.length===0){
-        return res.status(404).json({error:"No result found"})
-    }else{
+    
         res.status(200).json(searchResult);
-    }
+    
     
     }catch(error){
         next(error)
