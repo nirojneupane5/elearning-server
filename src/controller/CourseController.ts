@@ -94,3 +94,14 @@ export const addCourseCategory=async(req:Request<{},{},CreateCourseCategroy>,res
         next(error)
     }
 }
+
+//Route 7: Display all course category
+export const displayCourseCategroy=async(req:Request,res:Response,next:NextFunction)=>{
+    try{
+        const courseCategory= await Category.find({});
+        res.status(200).json(courseCategory)
+    }catch(error){
+       next(error) 
+    }
+
+}
