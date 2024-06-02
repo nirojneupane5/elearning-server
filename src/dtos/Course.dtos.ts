@@ -5,3 +5,7 @@ export interface CreateCourseDto{
     course_image:string
     category:string
 }
+
+export interface CreateCourseCategroy{
+    category_name:string
+}
