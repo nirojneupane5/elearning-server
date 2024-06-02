@@ -5,6 +5,7 @@ interface ICourse extends Document{
     course_desc:string;
     price:number;
     course_image:string;
+    category:string
 }
 
 const courseSchema:Schema<ICourse>=new Schema({
@@ -21,6 +22,10 @@ const courseSchema:Schema<ICourse>=new Schema({
         required:true
     },
     course_image:{
+        type:String,
+        required:true
+    },
+    category:{
         type:String,
         required:true
     }

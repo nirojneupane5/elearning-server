@@ -14,4 +14,8 @@ export const createCourseSchema=Joi.object({
         "number.greater":"Price must be greater than 0",
         "any.required":"Course price must be required"
     }),
+    category:Joi.string().required().messages({
+        "string.base":"Please enter the valid course description",
+        "any.required":"Course description is required"
+    }),
 })
