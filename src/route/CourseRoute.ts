@@ -5,6 +5,7 @@ import { validate } from "../middleware/validate";
 import { createCourseSchema } from "../validators/CourseValidation";
 import { validateImage } from "../middleware/validateImage";
 import path from "path";
+import { createCourseCategory } from "../validators/CategoryValidation";
 
 const router=express.Router();
 
@@ -65,6 +66,7 @@ router.get('/courseSearch',searchCourse);
 router.put('/update-course',updateCourseCategory);
 
 //Route 6: Add course category
-router.post('/course-category',addCourseCategory)
+router.post('/course-category',validate(createCourseCategory),addCourseCategory);
+
 
 export default router;
