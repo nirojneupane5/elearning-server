@@ -1,6 +1,6 @@
 import express from "express";
 import multer from "multer"
-import { createCourse, displayCourse, displaySingleCourse, searchCourse, updateCourseCategory } from "../controller/CourseController";
+import { addCourseCategory, createCourse, displayCourse, displaySingleCourse, searchCourse, updateCourseCategory } from "../controller/CourseController";
 import { validate } from "../middleware/validate";
 import { createCourseSchema } from "../validators/CourseValidation";
 import { validateImage } from "../middleware/validateImage";
@@ -63,5 +63,8 @@ router.get('/courseSearch',searchCourse);
 
 //Route 5: Update course
 router.put('/update-course',updateCourseCategory);
+
+//Route 6: Add course category
+router.post('/course-category',addCourseCategory)
 
 export default router;

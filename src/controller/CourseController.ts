@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import { CreateCourseDto } from "../dtos/Course.dtos";
+import { CreateCourseCategroy, CreateCourseDto } from "../dtos/Course.dtos";
 import Course from "../models/CourseSchema";
+import Category from "../models/CategorySchema";
 
 //Route 1: Create a course
 export const createCourse=async(req:Request<{},{},CreateCourseDto>,res:Response,next:NextFunction)=>{
@@ -81,4 +82,15 @@ export const updateCourseCategory=async(req:Request,res:Response,next:NextFuncti
         next(error)
     }
 
+}
+
+//Route 6: Adding course category
+export const addCourseCategory=async(req:Request<{},{},CreateCourseCategroy>,res:Response,next:NextFunction)=>{
+    const {category_name}=req.body;
+    try{
+        const category=await Category.create({category_name});
+        res.status(201).json(category)
+    }catch(error){
+        next(error)
+    }
 }
