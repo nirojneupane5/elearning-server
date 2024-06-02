@@ -4,7 +4,7 @@ import Course from "../models/CourseSchema";
 
 //Route 1: Create a course
 export const createCourse=async(req:Request<{},{},CreateCourseDto>,res:Response,next:NextFunction)=>{
-    let {course_name,price,course_desc} =req.body;
+    let {course_name,price,course_desc,category} =req.body;
     const { filename }=req.file!;
     let course_image=filename;
     let courseName:string =course_name.charAt(0).toUpperCase()+ course_name.toLowerCase().slice(1)
@@ -13,7 +13,7 @@ export const createCourse=async(req:Request<{},{},CreateCourseDto>,res:Response,
         return res.status(409).json({error:"Course already exits"})
     }
     try{
-        const course=await Course.create({course_name:courseName,course_desc,price,course_image});
+        const course=await Course.create({course_name:courseName,course_desc,price,course_image,category});
         res.status(201).json(course);
     }catch(error){
         next(error)
@@ -52,11 +52,33 @@ export const searchCourse=async(req:Request,res:Response,next:NextFunction)=>{
             {course_name:{$regex:query.course_name,$options:"xi"}}
         ]
     })
-    
         res.status(200).json(searchResult);
-    
-    
     }catch(error){
         next(error)
     }
+}
+
+//Route 5 : Adding the category field in course database by updating
+export const updateCourseCategory=async(req:Request,res:Response,next:NextFunction)=>{
+
+    const defaultCategory="Web Development";
+
+    try{
+        const course = await Course.updateMany(
+            {
+            category:{ $exists:false }
+            },
+            {
+                $set:{category: defaultCategory}
+            }
+    )
+    res.status(200).json({message:"Course updated sucessfully",
+        updateCount:course.modifiedCount
+    })
+
+
+    }catch(error){
+        next(error)
+    }
+
 }
