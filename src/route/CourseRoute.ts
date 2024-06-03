@@ -62,17 +62,17 @@ router.get("/course/:id",displaySingleCourse)
 //Route 4: Search course
 router.get('/courseSearch',searchCourse);
 
-//Route 5: Update course
-router.put('/update-course',updateCourseCategory);
-
-//Route 6: Add course category
+//Route 5: Add course category
 router.post('/course-category',validate(createCourseCategory),addCourseCategory);
 
-//Route 7: Display all course category
+//Route 6: Display all course category
 router.get('/course-category',displayCourseCategroy)
 
-//Route 8: Delete course category
-router.delete('/course-category/:id',deleteCourseCategory)
+//Route 7: Delete course category
+router.delete('/course-category/:id',deleteCourseCategory);
+
+//Route 8: Update course category
+router.patch('/course-category/:id',updateCourseCategory)
 
 
 export default router;

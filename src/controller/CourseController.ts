@@ -59,32 +59,32 @@ export const searchCourse=async(req:Request,res:Response,next:NextFunction)=>{
     }
 }
 
-//Route 5 : Adding the category field in course database by updating
-export const updateCourseCategory=async(req:Request,res:Response,next:NextFunction)=>{
 
-    const defaultCategory="Web Development";
+// export const updateCourseCategory=async(req:Request,res:Response,next:NextFunction)=>{
 
-    try{
-        const course = await Course.updateMany(
-            {
-            category:{ $exists:false }
-            },
-            {
-                $set:{category: defaultCategory}
-            }
-    )
-    res.status(200).json({message:"Course updated sucessfully",
-        updateCount:course.modifiedCount
-    })
+//     const defaultCategory="Web Development";
+
+//     try{
+//         const course = await Course.updateMany(
+//             {
+//             category:{ $exists:false }
+//             },
+//             {
+//                 $set:{category: defaultCategory}
+//             }
+//     )
+//     res.status(200).json({message:"Course updated sucessfully",
+//         updateCount:course.modifiedCount
+//     })
 
 
-    }catch(error){
-        next(error)
-    }
+//     }catch(error){
+//         next(error)
+//     }
 
-}
+// }
 
-//Route 6: Adding course category
+//Route 5: Adding course category
 export const addCourseCategory=async(req:Request<{},{},CreateCourseCategroy>,res:Response,next:NextFunction)=>{
     const {category_name}=req.body;
     try{
@@ -95,7 +95,7 @@ export const addCourseCategory=async(req:Request<{},{},CreateCourseCategroy>,res
     }
 }
 
-//Route 7: Display all course category
+//Route 6: Display all course category
 export const displayCourseCategroy=async(req:Request,res:Response,next:NextFunction)=>{
     try{
         const courseCategory= await Category.find({});
@@ -106,7 +106,7 @@ export const displayCourseCategroy=async(req:Request,res:Response,next:NextFunct
 
 }
 
-//Route 8: Delete course category
+//Route 7: Delete course category
 export const deleteCourseCategory=async(req:Request,res:Response,next:NextFunction)=>{
     const {id}=req.params;
     try{
@@ -116,6 +116,20 @@ export const deleteCourseCategory=async(req:Request,res:Response,next:NextFuncti
             return res.status(404).json({message:"Course category not found"})
         }
         res.status(202).json({message:"Course category deleted sucessfully"})
+    }catch(error){
+        next(error)
+    }
+}
+
+//Route 8: Update course category
+export const updateCourseCategory=async(req:Request,res:Response,next:NextFunction)=>{
+    const {id}=req.params;
+    try{
+        const courseCategory=await Category.findByIdAndUpdate({_id:id},{...req.body})
+        if(!courseCategory){
+            return res.status(404).json({error:"No such category exists"})
+        }
+        res.status(200).json({message:"Course category updated sucessfully"})
     }catch(error){
         next(error)
     }
