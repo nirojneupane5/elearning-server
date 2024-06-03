@@ -105,3 +105,18 @@ export const displayCourseCategroy=async(req:Request,res:Response,next:NextFunct
     }
 
 }
+
+//Route 8: Delete course category
+export const deleteCourseCategory=async(req:Request,res:Response,next:NextFunction)=>{
+    const {id}=req.params;
+    try{
+        const courseCategory=await Category.findByIdAndDelete({_id:id});
+
+        if(!courseCategory){
+            return res.status(404).json({message:"Course category not found"})
+        }
+        res.status(202).json({message:"Course category deleted sucessfully"})
+    }catch(error){
+        next(error)
+    }
+}
