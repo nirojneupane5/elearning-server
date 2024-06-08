@@ -21,6 +21,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/src/CourseImage',express.static(path.join(__dirname,'CourseImage')));
+app.use('/dist/CourseImage',express.static(path.join(__dirname,'CourseImage')));
 
 // Application routes
 app.use('/api',CourseRoute);
